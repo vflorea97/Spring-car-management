@@ -26,6 +26,11 @@ public class MasinaService {
         masini.forEach(m-> System.out.println(m));
     }
 
+    public List<Masina> getAllMasini(){
+        List<Masina>  masini= masinaRepository.findAll();
+        return masini;
+    }
+
 
     public List<Masina> getAllMasiniWithYearGreater(int n){
 
