@@ -30,19 +30,19 @@ public class MasinaResponse {
     }
     @GetMapping("api/v1/masina/getAllMasiniWithAnGreaterThen")
     public ResponseEntity<List<Masina>> getAllMasiniWithAnGreaterThen(){
-        log.info("REST request to get all Masini");
+        log.info("REST request to get all Masini dupa 2000");
         List<Masina> masini = masinaService.getAllMasiniWithYearGreater(2000);
         return new ResponseEntity<>(masini, HttpStatus.OK);
     }
     @GetMapping("api/v1/masina/getAllMasiniByCuloare")
     public ResponseEntity<List<Masina>> getAllMasiniByCuloare(){
-        log.info("REST request to get all Masini");
+        log.info("REST request to get all Masini verzi");
         List<Masina> masini = masinaService.getAllMasiniByCuloare("Green");
         return new ResponseEntity<>(masini, HttpStatus.OK);
     }
     @GetMapping("api/v1/masina/getAllCarByMarca")
     public ResponseEntity<List<Masina>> getAllCarByMarca(){
-        log.info("REST request to get all Masini");
+        log.info("REST request to get all Masini Audi");
         List<Masina> masini = masinaService.getAllCarByMarca("Audi");
         return new ResponseEntity<>(masini, HttpStatus.OK);
     }
