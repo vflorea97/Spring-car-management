@@ -5,6 +5,7 @@ import ro.mycode.carmanagement.exceptions.MasinaExceptieMasinaExistenta;
 import ro.mycode.carmanagement.model.Masina;
 import ro.mycode.carmanagement.repository.MasinaRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,13 +29,16 @@ public class MasinaService {
 
     public List<Masina> getAllMasini(){
         List<Masina>  masini= masinaRepository.findAll();
-        return masini;
+        if (masini.size() > 0) {
+            return masini;
+        }
+        return null;
     }
 
 
     public List<Masina> getAllMasiniWithYearGreater(int n){
-
-        return  masinaRepository.getAllMasiniWithAnGreaterThen(n).get();
+        List<Masina> masinas = masinaRepository.getAllMasiniWithAnGreaterThen(n).get();
+        return  masinas;
 
     }
 
@@ -46,19 +50,12 @@ public class MasinaService {
         return masinaRepository.getAllCarByMarca(marca).get();
     }
 
-
+    @Transactional
     public void addMasina(Masina masina) throws MasinaExceptieMasinaExistenta {
-
-
         Optional<Masina> m=masinaRepository.findByModel(masina.getModel());
-
-
-        if(m.equals(Optional.empty())){
-
-            masinaRepository.save(masina);
+        if(m.isEmpty()){
+            masinaRepository.saveAndFlush(masina);
         }else{
-
-
             throw  new MasinaExceptieMasinaExistenta();
         }
     }
