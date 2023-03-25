@@ -23,7 +23,7 @@ public class CarManagementApplication {
 
 
 
-			view.play();
+//			view.play();
 
 		};
 
